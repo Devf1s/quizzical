@@ -13,30 +13,25 @@ function App() {
 	const [isLoad, setIsLoad] = useState(false);
 	const [questions, setQuestions] = useState(questionsData);
 	const [questionElements, setQuestionElements] = useState([]);
-
-	console.log(points);
 	
 	useEffect(() => {
-		setQuestions(prevQuestions => 
-			[...prevQuestions].sort(() => 0.5 - Math.random()).slice(0, 5)
-		);	
-		console.log(questions);
+		if (!result) {
+			setQuestions(prevQuestions => 
+				[...prevQuestions].sort(() => 0.5 - Math.random()).slice(0, 5)
+			);
+		}	
 
 		setQuestionElements(questions.map(question => (
 			<Question 
 				key={question.id}
 				text={question.text}
 				correctAnswer={question.answer}
+				isCorrectAnswer={question.isAnswer}
 				buttons={question.buttons}
-				addPoints={addPoints}
 				result={result}
 			/>
 		)));
-	}, [isQuiz]);
-
-	function addPoints() {
-		setPoints(prevPoint => prevPoint + 1);
-	}
+	}, [isQuiz, result]);
 
 	function startQuiz() {
 		setIsLoad(prevLoad => !prevLoad);
@@ -44,10 +39,13 @@ function App() {
 
 		setTimeout(() => {
 			setIsLoad(prevLoad => !prevLoad); // unset Loader
-		}, 2500);
+		}, 2500); 
 	}
 
 	function checkAnswers() {
+		questionElements.map(question => 
+			console.log(question)
+		);
 		setResult(prevResult => !prevResult);
 	}
 
