@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-function Question({buttons, text, result, correctAnswer, addPoints}) {
+function Question({buttons, text, result, correctAnswer, isCorrectAnswer}) {
 	const [answer, setAnswer] = useState('');
-	const [selection, setSelection] = useState('');
 	const buttonElements = buttons.map(option => {
 		if (!result) { 
 			return (
@@ -10,7 +9,7 @@ function Question({buttons, text, result, correctAnswer, addPoints}) {
 					id={option}
 					key={option}
 					className={
-						"option bg-transparent rounded-xl py-0.5 px-5 text-sm text-dark-blue text-center " + (selection === option ? 'selected' : '')
+						"option bg-transparent rounded-xl py-0.5 px-5 text-sm text-dark-blue text-center " + (answer === option ? 'selected' : '')
 					}
 				>
 					{ option }
@@ -42,26 +41,15 @@ function Question({buttons, text, result, correctAnswer, addPoints}) {
 			);
 		}
 	});
-	
-	if (result) {
-		checkAnswer();
-	}
-
-	function checkAnswer() {
-		buttons.forEach(button => {
-			if (button === answer) {
-				if (answer === correctAnswer) {
-					addPoints();
-				} 
-			} 
-		});
-	}
 
 	function handleClick(e) {
 		const value = e.target.value.toString();
-		
-		setSelection(value);
+
 		setAnswer(value);
+		if (value === correctAnswer) {
+			isCorrectAnswer = true;
+		}
+		console.log('IsCorrectAnswer: ', isCorrectAnswer);
 	}
 
 	return (
