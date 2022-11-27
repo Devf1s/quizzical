@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Question({buttons, text, result, correctAnswer, points}) {
+function Question({buttons, text, result, correctAnswer, addPoints}) {
 	const [answer, setAnswer] = useState('');
 	const [selection, setSelection] = useState('');
 	const buttonElements = buttons.map(option => {
@@ -51,7 +51,7 @@ function Question({buttons, text, result, correctAnswer, points}) {
 		buttons.forEach(button => {
 			if (button === answer) {
 				if (answer === correctAnswer) {
-					return points++;
+					addPoints();
 				} 
 			} 
 		});
@@ -59,7 +59,7 @@ function Question({buttons, text, result, correctAnswer, points}) {
 
 	function handleClick(e) {
 		const value = e.target.value.toString();
-		points++;
+		
 		setSelection(value);
 		setAnswer(value);
 	}
