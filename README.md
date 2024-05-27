@@ -12,4 +12,4 @@ Overview
 	- [React](https://reactjs.org/) - JavaScript library for building user interfaces
 	- [Tailwind](https://tailwindcss.com/) - CSS framework for styling
 	- [Blob](https://passionhacks.com/blob-maker/?n=1&e=6&gw=6&se=null&c=d1d8e0&o=0) - Blob Maker that generates various blob shapes and adds a gradient 
-- [Quizzical](https://1kiritos1.github.io/quizzical/)
+- [Quizzical](https://devf1s.github.io/quizzical/)
